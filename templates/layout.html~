@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<link rel="stylesheel" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
+	<body>
+		<div class="header">
+		<a href="/" class="header">Home</a>
+		<a href="/users">Users</a>
+		<a href="/new_topic">New Topic</a>		
+		<a href="/logout">Logout</a>
+		<p>{% if current_user.is_authenticated() %} Welcome {{ current_user.username }}.{% endif %}</p>
+		</div>
+		{% with messages = get_flashed_messages(with_categories=True) %}
+		{% if messages and next != "/" %}
+		{% for category, message in messages %}
+		<li>{{ category }}: {{ message }}</li>
+		{% endfor %}
+		{% endif %}
+		{% endwith %}
+		{% block title %}{% endblock %}
+		{% block content %}{% endblock %}
+	</body>
+</html>

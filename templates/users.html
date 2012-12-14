@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% if users %}
+User list:
+{% for user in users %}
+<li>Username: {{ user.username }}</ br> Email: {{ user.email }} </li>
+{% endfor %}
+{% else %}
+<p>There are no users yet!</p>
+{% endif %}
+{% endblock %}

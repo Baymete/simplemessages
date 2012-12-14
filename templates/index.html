@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% block content %}
+<p>Index page</p>
+	{% if topics %}
+		{% for topic in topics %}
+		<li>
+			<a href='/topic/{{ topic.id }}'>{{ topic.topic }}</a>
+			<br />Date added: {{ topic.create_date.strftime('%d.%m.%Y %H:%M') }}
+			<br />Added by: {{ topic.posted_by.username }}
+		</li>
+		{% endfor %}
+	{% else %}
+	No topics yet!
+	{% endif %}
+{% endblock %}

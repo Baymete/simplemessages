@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% block content %}
+<p><h3>{{ posts.first().topic.topic }}</h3></p>
+{% for post in posts %}
+<li>{{ post.post }}</li>
+{% endfor %}
+<p>
+<form method='POST' action='/topic/{{ posts.first().topic.id }}'>
+{{ form.hidden_tag() }}
+{{ form.post.label }}:
+<br />{{ form.post }}
+<input type='submit' value='Reply'>
+</form>
+</p>
+{% if form.errors %}
+{% for error in form.errors %}
+<li>{{ error }}</li>
+{% endfor %}
+{% endif %}
+{% endblock %}

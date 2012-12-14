@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <form method="POST" action="login">
+        {{ form.hidden_tag() }}
+        <p>{{ form.username.label }} {{ form.username(size=20) }}</p>
+        <p>{{ form.password.label }} {{ form.password }} </p>
+        </ br>
+        <input type="submit" value="Go">
+    </form>
+    <a href="/register">Register</a>
+	{% if errors  %}
+	<p>Fields required:</p>
+	{% for error in errors %}
+	<li>{{ error }}</li>
+	{% endfor %}
+	{% endif %}
+{% endblock %}

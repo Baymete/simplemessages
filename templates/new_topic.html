@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block content %}
+<form method='POST' action='/new_topic'>
+{{ form.hidden_tag() }}
+<p>{{ form.topic.label }}: {{ form.topic }}</p>
+<p>{{ form.post.label }}: {{ form.post }}</p>
+<input type='submit' value='Post'>
+</form>
+{% if form.errors %}
+{% for error in errors %}
+<li>{{ error }}</li>
+{% endfor %}
+{% endif %}
+{% endblock %}

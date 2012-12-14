@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+		<title>Welcome to simplemessages!</title>
+	</head>
+	<body>
+		<div class="header">
+		<a href="/">Home</a>
+		<a href="/users">Users</a>
+		<a href="/new_topic">New Topic</a>
+		<a href="/logout">Logout</a>
+		<p class="welcome">{% if current_user.is_authenticated() %} 
+			Welcome {{ current_user.username }}.{% endif %}</p>
+		</div>
+		<div class="messages">
+		{% with messages = get_flashed_messages(with_categories=True) %}
+		{% if messages and next != '/' %}
+		{% for category, message in messages %}
+		<li>{{ category }}: {{ message }}</li>
+		{% endfor %}
+		{% endif %}
+		{% endwith %}
+		</div>
+		<div class="title">
+		{% block title %}{% endblock %}
+		</div>
+		<div class="content">
+		{% block content %}{% endblock %}
+		</div>
+	</body>
+</html>
